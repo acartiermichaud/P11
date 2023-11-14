@@ -1,0 +1,9 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  @media (min-width: 920px) {
+    flex-direction: row;
+  }
+}

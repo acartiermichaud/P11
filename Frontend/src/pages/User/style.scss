@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+
+  &_title {
+    color: #fff;
+  }
+}
