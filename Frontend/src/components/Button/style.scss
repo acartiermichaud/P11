@@ -5,13 +5,6 @@
   text-align: center;
   font-weight: bold;
 
-  &_sign-in {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-  }
-
   &_error {
     border: 2.5px #00bc77 outset;
     display: block;
@@ -32,6 +25,7 @@
     border: 2.5px #00bc77 outset;
     display: block;
     width: 100%;
+    box-sizing: border-box;
     padding: 8px;
     font-size: 1.1rem;
     margin-top: 1rem;

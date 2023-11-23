@@ -1,20 +1,16 @@
 // React
-import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // Component
-//import Input from '../../components/Input'
-import Button from '../../components/Button'
 import ErrorMessage from '../../components/ErrorMessage'
 
 // Style
 import './style.scss'
-import '../Input/style.scss'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { selectSignin } from '../../utils/selectors'
-import { fetchSignin } from '../../features/signin'
+import { userSignin } from '../../redux/features/auth/authActions'
 
 
 function Form () {
@@ -25,44 +21,49 @@ function Form () {
   const [passwordError, setPasswordError] = useState(false);
   const [authenticationError, setauthenticationError] = useState(false);
 
-  let navigate = useNavigate();
-
+  const { userToken, userProfile, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
-  const signin = useSelector(selectSignin)
-  
-  function login () {
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (userToken !== null && userProfile !== null && error === null) navigate('/user')
+  }, [navigate, userToken, userProfile, error])
+
+  function signin(e) {
+    e.preventDefault()
     usernameValue === "" ? setUsernameError(true) : setUsernameError(false)
     passwordValue === "" ? setPasswordError(true) : setPasswordError(false)
-    
-    if (usernameValue !== "" && passwordValue !== "") {
-      dispatch(fetchSignin([usernameValue, passwordValue]))
-      signin.status === "resolved" ? navigate("/user") : setauthenticationError(true)
+    if (usernameValue !== "" && passwordValue !== ""){
+      dispatch(userSignin([usernameValue, passwordValue]))
     }
   }
   
   return (
-    <form>
-  
-      <div className="input-wrapper">
-        <label className="input-wrapper_label" htmlFor="username">Username</label>
-        <input className="input-wrapper_field" type="text" id="username" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)}/>
-      </div>
-      <ErrorMessage display={usernameError} text="Please enter your username." />
+    <div>
+      {error !== null && setauthenticationError(true)}
+      <form>
+        <div className="input-wrapper">
+          <label className="input-wrapper_label" htmlFor="username">Username</label>
+          <input className="input-wrapper_field" type="text" id="username" value={usernameValue} onChange={(e) => setUsernameValue(e.target.value)}/>
+        </div>
+        <ErrorMessage display={usernameError} text="Please enter your username." />
 
-      <div className="input-wrapper">
-        <label className="input-wrapper_label" htmlFor="password">Password</label>
-        <input className="input-wrapper_field" type="text" id="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}/>
-      </div>
-      <ErrorMessage display={passwordError} text="Please enter your password." />
+        <div className="input-wrapper">
+          <label className="input-wrapper_label" htmlFor="password">Password</label>
+          <input className="input-wrapper_field" type="text" id="password" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}/>
+        </div>
+        <ErrorMessage display={passwordError} text="Please enter your password." />
 
-      <div className="input-remember">
-        <input type="checkbox" id="remember-me" />
-        <label className="input-remember_label" htmlFor="remember-me">Remember me</label>
-      </div>
-      
-      <Button id="form-button" styleName="button button_sign-in" path='/user' text="Sign In" onClick={() => {login()}}/>
-      <ErrorMessage display={authenticationError} text="Authentication failed. Please try again." />
-    </form>
+        <div className="input-remember">
+          <input type="checkbox" id="remember-me" />
+          <label className="input-remember_label" htmlFor="remember-me">Remember me</label>
+        </div>
+        
+        <button type="submit" className="form-button" onClick={(e) => signin(e)}>Sign In</button>
+        <ErrorMessage display={authenticationError} text="Authentication failed. Please try again." />
+      </form>
+    </div>
   )
 }
   

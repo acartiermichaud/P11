@@ -3,9 +3,9 @@
   align-items: center;
   font-weight: bold;
   color: #2c3e50;
-}
 
-.main-nav-logo-image {
-  max-width: 100%;
-  width: 200px;
+  &_image {
+    max-width: 100%;
+    width: 200px;
+  }
 }

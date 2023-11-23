@@ -1,5 +1,5 @@
 // React component
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // Style
 import './style.scss'
