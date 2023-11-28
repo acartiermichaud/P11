@@ -1,13 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { userGetProfile, userSetProfile} from './userActions'
 
-// Initialize userToken from local storage
-const userToken = localStorage.getItem('userToken')
-  ? localStorage.getItem('userToken')
-  : null
 
 const initialState = {
   loading: false,
-  userToken,
+  userProfile: null,
   error: null
 }
 
@@ -15,17 +12,44 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    signout: (state) => {
-      console.log("signout")
-      localStorage.removeItem('userToken') // deletes token from storage
+    clearProfile: (state) => {
       state.loading = false
-      state.userToken = null
+      state.userProfile = null
       state.error = null
-      console.log("signout")
     }
   },
-  extraReducers: {}
+  extraReducers(builder) {  
+    builder
+      .addCase(userGetProfile.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(userGetProfile.fulfilled, (state, { payload }) => {
+        state.loading = false
+        state.userProfile = payload
+        state.error = null
+      })
+      .addCase(userGetProfile.rejected, (state, { payload }) => {
+        state.loading = false
+        state.userProfile = null
+        state.error = payload
+      })
+      .addCase(userSetProfile.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(userSetProfile.fulfilled, (state, { payload }) => {
+        state.loading = false
+        state.userProfile = payload
+        state.error = null
+      })
+      .addCase(userSetProfile.rejected, (state, { payload }) => {
+        state.loading = false
+        state.userProfile = null
+        state.error = payload
+      })
+  }
 })
 
-export const { signout } = userSlice.actions
+export const { clearProfile } = userSlice.actions
 export default userSlice.reducer

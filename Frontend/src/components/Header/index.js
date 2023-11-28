@@ -6,12 +6,12 @@ import Menu from '../../components/Menu'
 import './style.scss'
 
 
-function Header ({user}) {
+function Header () {
   
   return (
     <nav className="main-nav">
-      <Logo />
-      <Menu user={user}/>
+      <Logo/>
+      <Menu/>
     </nav>
   )
 }

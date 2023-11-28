@@ -16,7 +16,7 @@ function Home () {
   
   return (
     <div>
-      <Header user=""/>
+      <Header/>
       <main>
         <Banner/>
 
