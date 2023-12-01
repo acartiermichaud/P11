@@ -4,12 +4,6 @@
   gap: 1rem;
 }
 
-.edit-contener {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 .edit-wrapper {
   display: flex;
   flex-direction: row;
@@ -29,25 +23,13 @@
   }
 }
 
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .button-container {
   display: flex;
   gap: 30px;
-}
-
-.form-button{
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  background-color: #00bc77;
-  color: #fff;
-  border: none;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }

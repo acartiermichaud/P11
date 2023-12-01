@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { authSignin } from './authActions'
 
 
-// Initialize userToken from local storage
-const userToken = localStorage.getItem('userToken')
-  ? localStorage.getItem('userToken')
+// Initialize authToken from local storage
+const authToken = localStorage.getItem('authToken')
+  ? localStorage.getItem('authToken')
   : null
 
 const initialState = {
   loading: false,
-  userToken,
+  authToken,
   error: null
 }
 
@@ -19,7 +19,7 @@ const authSlice = createSlice({
   reducers: {
     signout: (state) => {
       state.loading = false
-      state.userToken = null
+      state.authToken = null
       state.error = null
     }
   },
@@ -32,11 +32,11 @@ const authSlice = createSlice({
       .addCase(authSignin.fulfilled, (state, { payload }) => {
         state.loading = false
         if (payload !== null) {
-          state.userToken = payload
+          state.authToken = payload
           state.error = null
         }
         else {
-          state.userToken = null
+          state.authToken = null
           state.error = "Invalid credentials"
         }
         

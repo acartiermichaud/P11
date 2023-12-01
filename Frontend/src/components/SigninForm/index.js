@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Component
+// Components
 import ErrorMessage from '../ErrorMessage'
+import Button from '../Button'
 
 // Style
 import './style.scss'
@@ -15,25 +16,21 @@ import { authSignin } from '../../redux/features/auth/authActions'
 
 function SigninForm () {
 
+  const { authToken, error } = useSelector((state) => state.auth)
+
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [usernameError, setUsernameError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const [authenticationError, setauthenticationError] = useState(false)
-
-  const { userToken, error } = useSelector((state) => state.auth)
+  
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (userToken !== null && error === null) {
-      navigate('/user')
-    }
-    if (error !== null) {
-      setauthenticationError(true)
-    }
-  }, [navigate, userToken, error])
+    (authToken !== null && error === null) && navigate('/profile')
+    error !== null && setauthenticationError(true)
+  }, [navigate, authToken, error])
 
   function signin(e) {
     e.preventDefault()
@@ -74,7 +71,7 @@ function SigninForm () {
         <label className="input-remember_label" htmlFor="remember-me">Remember me</label>
       </div>
       
-      <button className="form-button" onClick={(e) => signin(e)}>Sign In</button>
+      <Button styleName="button button_form" action={(e) => signin(e)} text="Sign In"/>
       <ErrorMessage display={authenticationError} text="Authentication failed. Please try again." />
     </form>
   )

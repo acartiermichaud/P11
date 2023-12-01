@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 // Pages
 import Home from '../../pages/Home'
-import SignIn from '../../pages/SignIn'
-import User from '../../pages/User'
+import Login from '../../pages/Login'
+import Profile from '../../pages/Profile'
 import Error from '../../pages/Error'
 
 // Component
@@ -17,8 +17,8 @@ function MyRouter () {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} errorElement={<Error />}/>
-        <Route path="/sign-in" element={<SignIn />} errorElement={<Error />}/>
-        <Route path="/user" element={<User />} errorElement={<Error />}/>
+        <Route path="/login" element={<Login />} errorElement={<Error />}/>
+        <Route path="/profile" element={<Profile />} errorElement={<Error />}/>
         <Route path="/error" element={<Error />} errorElement={<Error />}/>
         <Route path="*" element={<Error />} errorElement={<Error />}/>
       </Routes>

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { signout } from './authSlice'
 
+
 export const authSignin = createAsyncThunk(
   'auth/signin',
   async (signInData) => {
@@ -15,13 +16,12 @@ export const authSignin = createAsyncThunk(
           headers: {"Content-type": "application/json"},
           body: loginJson
       })
-
       if (loginResponse.status === 200) {
         // Store user's token in local storage
         const loginResult = await loginResponse.json()
-        const userToken = loginResult.body.token
-        window.localStorage.setItem("userToken", userToken)
-        return userToken
+        const authToken = loginResult.body.token
+        window.localStorage.setItem("authToken", authToken)
+        return authToken
       }
       else {
         return null
@@ -33,6 +33,6 @@ export const authSignin = createAsyncThunk(
 )
 
 export const authSignout = () => (dispatch) => {
-  localStorage.removeItem('userToken')
+  localStorage.removeItem('authToken')
   dispatch(signout())
 }

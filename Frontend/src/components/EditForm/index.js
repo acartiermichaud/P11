@@ -1,15 +1,19 @@
 // React
 import { useState } from 'react'
 
-// Component
+// Components
 import ErrorMessage from '../ErrorMessage'
+import Button from '../Button'
+
+// PropTypes
+import PropTypes from 'prop-types'
 
 // Style
 import './style.scss'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { userSetProfile} from '../../redux/features/user/userActions'
+import { userSetProfile } from '../../redux/features/user/userActions'
 
 
 function EditForm ({setEditView}) {
@@ -48,7 +52,7 @@ function EditForm ({setEditView}) {
     <form className="edit-form">
       <div className="edit-wrapper">
         <label className="edit-wrapper_label" htmlFor="username">User name:</label>
-        <div className="edit-contener">
+        <div className="edit-container">
           <input className="edit-wrapper_field" type="text" id="username" value={usernameValue} onChange={(e) => updateValue(e.target.value, "username")}/>
           <ErrorMessage display={usernameError} text="Please enter your new username." />
         </div>
@@ -65,11 +69,15 @@ function EditForm ({setEditView}) {
       </div>
 
       <div className="button-container">
-        <button className="form-button" onClick={(e) => saveEdit(e)}>Save</button>
-        <button className="form-button" onClick={() => cancelEdit()}>Cancel</button>
+        <Button styleName="button button_form" action={(e) => saveEdit(e)} text="Save"/>
+        <Button styleName="button button_form" action={(e) => cancelEdit(e)} text="Cancel"/>
       </div>
     </form>
   )
+}
+
+EditForm.propTypes = {
+  setEditView: PropTypes.func
 }
   
 export default EditForm

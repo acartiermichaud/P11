@@ -1,24 +1,24 @@
 // React
 import { useState, useEffect } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // Components
 import Header from '../../components/Header'
+import Button from '../../components/Button'
 import EditForm from '../../components/EditForm'
 import TransactionCard from '../../components/TransactionCard'
 
-// Styles
+// Style
 import './style.scss'
-import '../../components/Button/style.scss'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { userGetProfile } from '../../redux/features/user/userActions'
 
 
-function User () {
+function Profile () {
 
-  const { userToken } = useSelector((state) => state.auth)
+  const { authToken } = useSelector((state) => state.auth)
   const { userProfile, error } = useSelector((state) => state.user)
 
   const [editView, setEditView] = useState(false);
@@ -27,13 +27,12 @@ function User () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (userToken !== null && userProfile === null) {
+    authToken === null && navigate('/')
+    if (authToken !== null && userProfile === null) {
       dispatch(userGetProfile())
     }
-    if (userToken === null || error !== null) {
-      navigate('/error')
-    }
-  }, [dispatch, navigate, userToken, userProfile, error])
+    error !== null && navigate('/error')
+  }, [dispatch, navigate, authToken, userProfile, error])
 
   function editUsername(e) {
     e.preventDefault()
@@ -42,18 +41,14 @@ function User () {
   
   return (
     <div>
-      {userToken === null && <Navigate to="/" />}
-
       {userProfile !== null &&
         <div>
           <Header/>
           <main className="main bg-dark">
             <div className="header">
               <div className="header_title">{editView ? <h1>Edit user info</h1> : <h1>Welcome back<br/>{userProfile.firstName} {userProfile.lastName}!</h1>}</div>
-              <button className={editView ? "button button_edit isHidden" : "button button_edit isDisplayed"} onClick={(e) => editUsername(e)}>Edit Name</button>
-
+              <Button styleName={editView ? "button button_edit isHidden" : "button button_edit isDisplayed"} action={(e) => editUsername(e)} text="Edit Name"/>
               {editView && <EditForm setEditView={setEditView}/>}
-
             </div>
             <h2 className="sr-only">Accounts</h2>
             <TransactionCard title="Argent Bank Checking (x8349)" amount="$2,082.79" desc="Available Balance"/>
@@ -66,4 +61,4 @@ function User () {
   )
 }
   
-export default User
+export default Profile

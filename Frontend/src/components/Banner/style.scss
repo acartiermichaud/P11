@@ -39,10 +39,11 @@
     }
     
     &_text {
-      margin: 20px 0 0 0;
+      margin: 15px 0 0 0;
       font-size: 0.9rem;
   
       @media (min-width: 920px) {
+        margin: 19px 0 0 0;
         font-size: 1.2rem;
       }
     }

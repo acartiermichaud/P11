@@ -1,7 +1,8 @@
 // React
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-// Components
+// Component
 import Tab from '../../components/Tab'
 
 // Style
@@ -15,15 +16,17 @@ import { userGetProfile, userCleanProfile } from '../../redux/features/user/user
 
 function Menu () {
 
-  const { userToken } = useSelector((state) => state.auth)
+  const { authToken } = useSelector((state) => state.auth)
   const { userProfile} = useSelector((state) => state.user)
+  
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (userToken !== null && userProfile === null) {
+    if (authToken !== null && userProfile === null) {
       dispatch(userGetProfile())
     }
-  }, [dispatch, userToken, userProfile])
+  }, [dispatch, authToken, userProfile])
 
   function signout(e) {
     e.preventDefault()
@@ -31,18 +34,19 @@ function Menu () {
     dispatch(userCleanProfile())
   }
 
+  function goTo(e, path) {
+    e.preventDefault()
+    navigate(path)
+  }
+
   return (
     <div>
-      {userToken === null && <Tab path="/sign-in" iconClass="icon fa fa-user-circle" text="Sign In"/>}
+      {authToken === null && <Tab action={(e) => goTo(e, "/login")} iconClass="icon fa fa-user-circle" text="Sign In"/>}
 
-      {(userToken !== null && userProfile !== null) &&
+      {(authToken !== null && userProfile !== null) &&
         <div className="tab-container">
-          <Tab path="/user" iconClass="icon fa fa-user-circle" text={userProfile.userName}/>
-
-          <button className="sign-out_button" to="" onClick={(e) => signout(e)}>
-            <i className="icon fa fa-sign-out"></i>
-            Sign Out
-          </button>
+          <Tab action={(e) => goTo(e, "/profile")} iconClass="icon fa fa-user-circle" text={userProfile.userName}/>
+          <Tab action={(e) => signout(e)} iconClass="icon fa fa-sign-out" text="Sign Out"/>
         </div>
       }
     </div>

@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { clearProfile } from './userSlice'
 
+
 export const userGetProfile = createAsyncThunk(
   'user/getprofile',
   async () => {
     try {
-      const userToken = window.localStorage.getItem("userToken")
+      const authToken = window.localStorage.getItem("authToken")
       const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
           method: "POST",
-          headers: {"Authorization": `Bearer ${userToken}`}
+          headers: {"Authorization": `Bearer ${authToken}`}
       })
-
       if (profileResponse.status === 200) {
         const profileResult = await profileResponse.json()
         return profileResult.body
@@ -28,14 +28,14 @@ export const userSetProfile = createAsyncThunk(
   'user/setprofile',
   async (username) => {
     try {
-      const userToken = window.localStorage.getItem("userToken")
+      const authToken = window.localStorage.getItem("authToken")
       const newUsername = {
         userName: username
       }
       const newUsernameJson = JSON.stringify(newUsername)
       const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
           method: "PUT",
-          headers: {"Authorization": `Bearer ${userToken}`, "Content-type": "application/json"},
+          headers: {"Authorization": `Bearer ${authToken}`, "Content-type": "application/json"},
           body: newUsernameJson
       })
       if (profileResponse.status === 200) {

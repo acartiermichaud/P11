@@ -1,18 +1,24 @@
-// React component
-import { Link } from 'react-router-dom'
+// PropTypes
+import PropTypes from 'prop-types'
 
 // Style
 import './style.scss'
 
 
-function Tab ({path, iconClass, text}) {
+function Tab ({action, iconClass, text}) {
   
   return (
-    <Link className="main-nav-item" to={path}>
+    <button className="main-nav-item" onClick={action}>
       <i className={iconClass}></i>
       {text}
-    </Link>
+    </button>
   )
+}
+
+Tab.propTypes = {
+  action: PropTypes.func,
+  iconClass: PropTypes.string,
+  text: PropTypes.string
 }
   
 export default Tab

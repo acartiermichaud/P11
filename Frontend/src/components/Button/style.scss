@@ -4,6 +4,12 @@
   color: #fff;
   text-align: center;
   font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &_error {
     border: 2.5px #00bc77 outset;
@@ -11,14 +17,20 @@
     padding: 8px 30px;
     font-size: 1.1rem;
     margin-top: 1rem;
-    text-decoration: none;
+  }
+
+  &_form{
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    border: none;
   }
   
   &_edit {
     border: 2.5px #00bc77 outset;
     padding: 10px;
     font-size: 0.8rem;
-    text-decoration: none;
   }
   
   &_transaction {
@@ -29,7 +41,6 @@
     padding: 8px;
     font-size: 1.1rem;
     margin-top: 1rem;
-    text-decoration: none;
   
     @media (min-width: 720px) {
       width: 200px;

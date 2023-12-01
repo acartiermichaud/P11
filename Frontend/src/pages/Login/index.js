@@ -6,12 +6,11 @@ import SigninForm from '../../components/SigninForm'
 import './style.scss'
 
 
-function SignIn () {
+function Login () {
   
   return (
     <div>
-      <Header user=""/>
-
+      <Header/>
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
@@ -23,4 +22,4 @@ function SignIn () {
   )
 }
   
-export default SignIn
+export default Login
