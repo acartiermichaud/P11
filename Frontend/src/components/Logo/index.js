@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './style.scss'
 
 // Image
-import argentBankLogo from '../../images/argentBankLogo.png'
+import argentBankLogo from '../../images/argentBankLogo.webp'
 
 
 function Logo () {
