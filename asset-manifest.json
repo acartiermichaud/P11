@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.3007bb2f.css",
-    "main.js": "/static/js/main.36cd786d.js",
-    "static/media/bank-tree.webp": "/static/media/bank-tree.829e2074dca6f281700b.webp",
-    "static/media/argentBankLogo.webp": "/static/media/argentBankLogo.b11ac07113d607497237.webp",
-    "static/media/icon-security.webp": "/static/media/icon-security.899e61fb075b98c3ad78.webp",
-    "static/media/icon-chat.webp": "/static/media/icon-chat.22712829cea11b40cb54.webp",
-    "static/media/icon-money.webp": "/static/media/icon-money.c0db616e53d1e1de3f6d.webp",
-    "index.html": "/index.html",
-    "main.3007bb2f.css.map": "/static/css/main.3007bb2f.css.map",
-    "main.36cd786d.js.map": "/static/js/main.36cd786d.js.map"
+    "main.css": "/p11/static/css/main.c58563e1.css",
+    "main.js": "/p11/static/js/main.5e949fc3.js",
+    "static/media/bank-tree.webp": "/p11/static/media/bank-tree.829e2074dca6f281700b.webp",
+    "static/media/argentBankLogo.webp": "/p11/static/media/argentBankLogo.b11ac07113d607497237.webp",
+    "static/media/icon-security.webp": "/p11/static/media/icon-security.899e61fb075b98c3ad78.webp",
+    "static/media/icon-chat.webp": "/p11/static/media/icon-chat.22712829cea11b40cb54.webp",
+    "static/media/icon-money.webp": "/p11/static/media/icon-money.c0db616e53d1e1de3f6d.webp",
+    "index.html": "/p11/index.html",
+    "main.c58563e1.css.map": "/p11/static/css/main.c58563e1.css.map",
+    "main.5e949fc3.js.map": "/p11/static/js/main.5e949fc3.js.map"
   },
   "entrypoints": [
-    "static/css/main.3007bb2f.css",
-    "static/js/main.36cd786d.js"
+    "static/css/main.c58563e1.css",
+    "static/js/main.5e949fc3.js"
   ]
 }
