@@ -2,7 +2,7 @@
   "name": "p11",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://acartiermichaud.github.io/p11",
+  "homepage": "https://acartiermichaud.github.io/p11/Frontend",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
