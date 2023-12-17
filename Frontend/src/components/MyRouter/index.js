@@ -14,7 +14,7 @@ import Footer from '../../components/Footer'
 function MyRouter () {
   
   return (
-    <Router basename="https://acartiermichaud.github.io/p11/">
+    <Router basename="https://acartiermichaud.github.io/p11">
       <Routes>
         <Route path="/" element={<Home />} errorElement={<Error />}/>
         <Route path="/login" element={<Login />} errorElement={<Error />}/>
