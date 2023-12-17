@@ -16,7 +16,7 @@ function MyRouter () {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} errorElement={<Error />}/>
+        <Route path="/" element={<Home />} errorElement={<Error />}/>
         <Route path="/login" element={<Login />} errorElement={<Error />}/>
         <Route path="/profile" element={<Profile />} errorElement={<Error />}/>
         <Route path="/error" element={<Error />} errorElement={<Error />}/>
