@@ -14,7 +14,7 @@ import Footer from '../../components/Footer'
 function MyRouter () {
   
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home />} errorElement={<Error />}/>
         <Route path="/login" element={<Login />} errorElement={<Error />}/>
